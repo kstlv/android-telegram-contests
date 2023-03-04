@@ -6262,4 +6262,7 @@
     <string name="AccDescrDocumentType">, %s file</string>
     <string name="AccDescrArchivedChatsShown">Archived chats shown</string>
     <string name="AccDescrArchivedChatsHidden">Archived chats hidden</string>
+    <string name="EncryptionKeyHint">Encryption key of this chat</string>
+    <string name="CallHideEmojiHint">Hide Emoji</string>
+    <string name="CallWeakSignal">Weak network signal</string>
 </resources>

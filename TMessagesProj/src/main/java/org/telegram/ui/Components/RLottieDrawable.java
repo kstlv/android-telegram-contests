@@ -1419,4 +1419,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         int h;
         float op;
     }
+
+    public void loop(){
+        autoRepeat = 1;
+    }
 }

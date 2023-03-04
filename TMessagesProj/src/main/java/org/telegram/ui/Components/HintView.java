@@ -106,7 +106,8 @@ public class HintView extends FrameLayout {
         arrowImageView = new ImageView(context);
         arrowImageView.setImageResource(topArrow ? R.drawable.tooltip_arrow_up : R.drawable.tooltip_arrow);
         arrowImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_gifSaveHintBackground), PorterDuff.Mode.MULTIPLY));
-        addView(arrowImageView, LayoutHelper.createFrame(14, 6, Gravity.LEFT | (topArrow ? Gravity.TOP : Gravity.BOTTOM), 0, 0, 0, 0));
+
+        addView(arrowImageView, LayoutHelper.createFrame(14, 6, (type != 100 ? Gravity.LEFT : Gravity.CENTER) | (topArrow ? Gravity.TOP : Gravity.BOTTOM), 0, 0, 0, 0));
     }
 
     public void setBackgroundColor(int background, int text) {

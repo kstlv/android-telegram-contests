@@ -16,6 +16,7 @@ import android.os.SystemClock;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -34,6 +35,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RLottieDrawable;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AcceptDeclineView extends View {
 
@@ -41,6 +47,7 @@ public class AcceptDeclineView extends View {
     private FabBackgroundDrawable declineDrawable;
     private Drawable callDrawable;
     private Drawable cancelDrawable;
+    private RLottieDrawable lottieDrawable;
     private Paint acceptCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     private StaticLayout acceptLayout;
@@ -118,6 +125,10 @@ public class AcceptDeclineView extends View {
         rippleDrawable.setCallback(this);
 
         arrowDrawable = ContextCompat.getDrawable(context, R.drawable.call_arrow_right);
+
+        int rawRes = R.raw.call_accept;
+        lottieDrawable = new RLottieDrawable(rawRes, "" + rawRes, AndroidUtilities.dp(40), AndroidUtilities.dp(40), true, null);
+        lottieDrawable.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY));
     }
 
 
@@ -366,9 +377,11 @@ public class AcceptDeclineView extends View {
         }
 
         canvas.save();
-        canvas.translate(-AndroidUtilities.dp(1), AndroidUtilities.dp(1));
-        canvas.rotate(-135, callDrawable.getBounds().centerX(), callDrawable.getBounds().centerY());
-        callDrawable.draw(canvas);
+        canvas.translate(AndroidUtilities.dp(10), AndroidUtilities.dp(10));
+        lottieDrawable.setAutoRepeatCount(Integer.MAX_VALUE);
+        lottieDrawable.loop();
+        lottieDrawable.start();
+        lottieDrawable.draw(canvas);
         canvas.restore();
 
         if (!leftDrag) {
